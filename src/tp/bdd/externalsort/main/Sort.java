@@ -21,14 +21,19 @@ public class Sort {
 		
 	}
 	
-
+	public void putToFile(String fileName, List<Integer> sortedListe) {
+		
+	}
+	
+	
 	public List arrayToArrays(int sublistsize, List<Integer> mylist) {
 		List<List<Integer>> ba3oucha = new ArrayList<List<Integer>>();
 		
 		return ba3oucha;
 	}
+	
 	public static void main(String[] args) {
 		
-		}
 	}
+}
 
