@@ -3,9 +3,9 @@ package tp.bdd.externalsort.main;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Sort {
 	public int pageSize;
@@ -13,16 +13,34 @@ public class Sort {
 	public String inputFile;
 	public String outputFile;
 	
-	public void getFromFile() throws FileNotFoundException {
-			Scanner sc = new Scanner(new BufferedReader(new FileReader("C:\\Users\\abahlel\\eclipse-workspace\\ExternalSort\\src\\tp\\bdd\\externalsort\\main\\in.txt")));
-			while(sc.hasNextLine()) {
-				System.out.println(sc.nextLine());
+	public void Sorter() throws FileNotFoundException {
+		BufferedReader objReader = new BufferedReader(new FileReader("SourceFiles\\in.txt"));
+		BufferedReader objWriter;
+		int currentline;
+		int filenumber;
+		String line;
+		try {
+			int linecount=0;
+			while ((line = objReader.readLine()) != null) {
+				linecount++;
+				filenumber=linecount/6;
+				objWriter = new BufferedReader(new FileReader("buffer\\"+filenumber+".txt"));
+				if(linecount % 6 == 0) {
+					
+				}
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
-	public void putToFile(String fileName, List<Integer> sortedListe) {
-		
+	public void fileToArrayList(String filename) throws IOException {
+		BufferedReader objReader = new BufferedReader(new FileReader(filename));
+		String line;
+		while((line= objReader.readLine())!=null){
+			
+		}
 	}
 	
 	
