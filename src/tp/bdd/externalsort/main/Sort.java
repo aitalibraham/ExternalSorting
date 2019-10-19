@@ -3,8 +3,13 @@ package tp.bdd.externalsort.main;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Sort {
@@ -15,43 +20,50 @@ public class Sort {
 	
 	public void Sorter() throws FileNotFoundException {
 		BufferedReader objReader = new BufferedReader(new FileReader("SourceFiles\\in.txt"));
-		BufferedReader objWriter;
-		int currentline;
-		int filenumber;
 		String line;
+		List l=new ArrayList<Integer>();;
 		try {
 			int linecount=0;
 			while ((line = objReader.readLine()) != null) {
+				l.add(Integer.parseInt(line));
 				linecount++;
-				filenumber=linecount/6;
-				objWriter = new BufferedReader(new FileReader("buffer\\"+filenumber+".txt"));
 				if(linecount % 6 == 0) {
-					
+					Collections.sort(l);
+					arrayListToFile("buffer\\"+(linecount/6)+".txt", l);
+					l=new ArrayList<Integer>();
 				}
 			}
+			
+			if(!l.isEmpty()) {
+				Collections.sort(l);
+				arrayListToFile("buffer\\"+(((int) linecount/6)+1)+".txt", l);
+			}
+				
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void fileToArrayList(String filename) throws IOException {
-		BufferedReader objReader = new BufferedReader(new FileReader(filename));
-		String line;
-		while((line= objReader.readLine())!=null){
-			
-		}
+	public List fileToArrayList(String filename) throws IOException {
+		
 	}
 	
-	
-	public List arrayToArrays(int sublistsize, List<Integer> mylist) {
-		List<List<Integer>> ba3oucha = new ArrayList<List<Integer>>();
-		
-		return ba3oucha;
+	public void arrayListToFile(String filepath, List<Integer> mylist) throws IOException {
+		FileWriter writer = new FileWriter(filepath); 
+		for(int i: mylist) {
+			  writer.write(i + System.lineSeparator());
+			}
+			writer.close();
 	}
 	
 	public static void main(String[] args) {
-		
+		try {
+			new Sort().Sorter();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 
